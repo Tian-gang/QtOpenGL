@@ -24,6 +24,9 @@ BaseDemo::BaseDemo(QWidget *parent)
        update();
     });
 
+    resize(800, 800);
+
+
     timer->start(1000 / 30);
 
     installEventFilter(m_camera);
