@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     BaseDemo.cpp \
     Camera.cpp \
+    LightDemo.cpp \
     main.cpp
 
 HEADERS += \
     BaseDemo.h \
-    Camera.h
+    Camera.h \
+    LightDemo.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

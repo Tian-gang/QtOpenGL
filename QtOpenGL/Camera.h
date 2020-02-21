@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <QObject>
+#include <QOpenGLWidget>
 #include <QVector3D>
 #include <QHash>
 
@@ -9,7 +9,7 @@ class Camera : public QObject
 {
     Q_OBJECT
 public:
-    Camera(QObject *parent = Q_NULLPTR);
+    Camera(QOpenGLWidget *parent = Q_NULLPTR);
 
     QVector3D cameraPos() const { return m_cameraPos; }
     QVector3D cameraUp() const { return m_cameraUpPos; }

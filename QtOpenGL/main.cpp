@@ -1,4 +1,5 @@
 #include "BaseDemo.h"
+#include "LightDemo.h"
 
 #include <QApplication>
 #include <QSurfaceFormat>

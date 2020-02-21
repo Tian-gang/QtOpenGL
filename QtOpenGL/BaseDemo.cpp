@@ -28,8 +28,6 @@ BaseDemo::BaseDemo(QWidget *parent)
 
 
     timer->start(1000 / 30);
-
-    installEventFilter(m_camera);
 }
 
 void BaseDemo::initializeGL()

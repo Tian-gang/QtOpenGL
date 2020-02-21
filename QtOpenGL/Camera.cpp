@@ -4,13 +4,21 @@
 #include <QtMath>
 #include <QMouseEvent>
 
-Camera::Camera(QObject *parent) : QObject(parent)
+Camera::Camera(QOpenGLWidget *parent) : QObject(parent)
 {
-
+    if(parent != Q_NULLPTR)
+    {
+        parent->installEventFilter(this);
+    }
 }
 
 bool Camera::eventFilter(QObject *watched, QEvent *event)
 {
+    if(watched != parent())
+    {
+        return QObject::eventFilter(watched, event);
+    }
+
     auto keyEventFunc = [=](bool pressed)
     {
         if(auto keyEvent = dynamic_cast<QKeyEvent*>(event))
