@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     format.setProfile(QSurfaceFormat::CoreProfile);
     QSurfaceFormat::setDefaultFormat(format);
 
-    BaseDemo w;
+    LightDemo w;
 
     w.show();
     return a.exec();

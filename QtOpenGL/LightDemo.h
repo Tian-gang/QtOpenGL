@@ -3,6 +3,9 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
 
 class Camera;
 class LightDemo : public QOpenGLWidget,
@@ -17,6 +20,14 @@ protected:
     void paintGL() Q_DECL_OVERRIDE;
 
 private:
+    QOpenGLShaderProgram* m_cubeShaderProgram = Q_NULLPTR;
+    QOpenGLShaderProgram* m_lightShaderProgram = Q_NULLPTR;
+
+    QOpenGLBuffer m_vbo{QOpenGLBuffer::VertexBuffer};
+
+    QOpenGLVertexArrayObject* m_vaoObject = Q_NULLPTR;
+    QOpenGLVertexArrayObject* m_vaoLight = Q_NULLPTR;
+
     Camera* m_camera = Q_NULLPTR;
 };
 

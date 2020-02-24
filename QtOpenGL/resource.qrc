@@ -7,4 +7,10 @@
         <file>texture.jpg</file>
         <file>texture2.jpg</file>
     </qresource>
+    <qresource prefix="/shader/light">
+        <file>lightFragmentShader.fsh</file>
+        <file>lightVertexShader.vsh</file>
+        <file>cubeFragment.fsh</file>
+        <file>cubeVertex.vsh</file>
+    </qresource>
 </RCC>
