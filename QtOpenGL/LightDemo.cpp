@@ -15,12 +15,10 @@ LightDemo::LightDemo(QWidget* parent)
     auto timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [this]()
     {
-      // m_rotateValue++;
        update();
     });
 
     resize(600, 400);
-
 
     timer->start(1000 / 30);
 }
