@@ -3,6 +3,9 @@
 
 #include <QApplication>
 #include <QSurfaceFormat>
+#include <QScreen>
+#include <QWindow>
+#include <QStyle>
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +22,8 @@ int main(int argc, char *argv[])
 
     LightDemo w;
 
+    w.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, w.size(), qApp->primaryScreen()->geometry()));
     w.show();
+
     return a.exec();
 }
