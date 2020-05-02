@@ -12,7 +12,7 @@
 class Camera;
 
 class BaseDemo : public QOpenGLWidget,
-               public QOpenGLFunctions_3_3_Core
+    public QOpenGLFunctions_3_3_Core
 {
     Q_OBJECT
 
@@ -25,13 +25,13 @@ protected:
     void initializeGL() Q_DECL_OVERRIDE;
 
 private:
-    QOpenGLShaderProgram* m_shaderProgram = Q_NULLPTR;
-    QOpenGLVertexArrayObject* m_vertexArrayObject = Q_NULLPTR;
-    QOpenGLTexture* m_texture = Q_NULLPTR;
+    QOpenGLShaderProgram *m_shaderProgram = Q_NULLPTR;
+    QOpenGLVertexArrayObject *m_vertexArrayObject = Q_NULLPTR;
+    QOpenGLTexture *m_texture = Q_NULLPTR;
 
     QOpenGLBuffer m_vbo{QOpenGLBuffer::VertexBuffer};
 
-    Camera* m_camera = Q_NULLPTR;
+    Camera *m_camera = Q_NULLPTR;
 
 private:
     int m_rotateValue = 0;

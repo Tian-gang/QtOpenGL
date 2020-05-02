@@ -11,11 +11,23 @@ class Camera : public QObject
 public:
     Camera(QOpenGLWidget *parent = Q_NULLPTR);
 
-    QVector3D cameraPos() const { return m_cameraPos; }
-    QVector3D cameraUp() const { return m_cameraUpPos; }
-    QVector3D targetPos() const { return m_cameraPos + m_cameraFront; }
+    QVector3D cameraPos() const
+    {
+        return m_cameraPos;
+    }
+    QVector3D cameraUp() const
+    {
+        return m_cameraUpPos;
+    }
+    QVector3D targetPos() const
+    {
+        return m_cameraPos + m_cameraFront;
+    }
 
-    float fieldOfVision() const { return m_fov; }
+    float fieldOfVision() const
+    {
+        return m_fov;
+    }
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;

@@ -5,7 +5,7 @@
 #include <QMatrix4x4>
 #include <QTimer>
 
-LightDemo::LightDemo(QWidget* parent)
+LightDemo::LightDemo(QWidget *parent)
     : QOpenGLWidget(parent), m_camera(new Camera(this)),
       m_cubeShaderProgram(new QOpenGLShaderProgram(this)),
       m_lightShaderProgram(new QOpenGLShaderProgram(this)),
@@ -13,10 +13,9 @@ LightDemo::LightDemo(QWidget* parent)
       m_vaoLight(new QOpenGLVertexArrayObject(this))
 {
     auto timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, [this]()
-    {
-      // m_rotateValue++;
-       update();
+    connect(timer, &QTimer::timeout, this, [this]() {
+        // m_rotateValue++;
+        update();
     });
 
     resize(800, 800);
@@ -31,14 +30,14 @@ void LightDemo::initializeGL()
 
     glEnable(GL_DEPTH_TEST);
 
-    if(!m_cubeShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/light/cubeVertex.vsh"))
-    {
+    if (!m_cubeShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex,
+                                                      ":/shader/light/cubeVertex.vsh")) {
         qDebug() << m_cubeShaderProgram->log();
         return;
     }
 
-    if(!m_cubeShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/light/cubeFragment.fsh"))
-    {
+    if (!m_cubeShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment,
+                                                      ":/shader/light/cubeFragment.fsh")) {
         qDebug() << m_cubeShaderProgram->log();
         return;
     }
@@ -46,63 +45,63 @@ void LightDemo::initializeGL()
     m_cubeShaderProgram->link();
     m_cubeShaderProgram->bind();
 
-     if(!m_lightShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/light/lightVertexShader.vsh"))
-     {
-         qDebug() << m_lightShaderProgram->log();
-         return;
-     }
+    if (!m_lightShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex,
+                                                       ":/shader/light/lightVertexShader.vsh")) {
+        qDebug() << m_lightShaderProgram->log();
+        return;
+    }
 
-     if(!m_lightShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/light/lightFragmentShader.fsh"))
-     {
-         qDebug() << m_lightShaderProgram->log();
-         return;
-     }
+    if (!m_lightShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment,
+                                                       ":/shader/light/lightFragmentShader.fsh")) {
+        qDebug() << m_lightShaderProgram->log();
+        return;
+    }
 
-     m_lightShaderProgram->link();
+    m_lightShaderProgram->link();
 
     float vertices[] = {
-            -0.5f, -0.5f, -0.5f,
-             0.5f, -0.5f, -0.5f,
-             0.5f,  0.5f, -0.5f,
-             0.5f,  0.5f, -0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f,  0.5f, -0.5f,
+        0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
 
-            -0.5f, -0.5f,  0.5f,
-             0.5f, -0.5f,  0.5f,
-             0.5f,  0.5f,  0.5f,
-             0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,
+        0.5f, -0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,
 
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f,
 
-             0.5f,  0.5f,  0.5f,
-             0.5f,  0.5f, -0.5f,
-             0.5f, -0.5f, -0.5f,
-             0.5f, -0.5f, -0.5f,
-             0.5f, -0.5f,  0.5f,
-             0.5f,  0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,
+        0.5f,  0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,
 
-            -0.5f, -0.5f, -0.5f,
-             0.5f, -0.5f, -0.5f,
-             0.5f, -0.5f,  0.5f,
-             0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f,  0.5f,
+        0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f, -0.5f,
 
-            -0.5f,  0.5f, -0.5f,
-             0.5f,  0.5f, -0.5f,
-             0.5f,  0.5f,  0.5f,
-             0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f,
-        };
+        -0.5f,  0.5f, -0.5f,
+        0.5f,  0.5f, -0.5f,
+        0.5f,  0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f, -0.5f,
+    };
 
     QOpenGLVertexArrayObject::Binder binderObject(m_vaoObject);
     m_vbo.create();
